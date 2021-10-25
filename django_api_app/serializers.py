@@ -18,3 +18,17 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Product
         fields = '__all__'
+
+
+class CartSerializer(serializers.ModelSerializer):
+    books = BookSerializer(many=True, read_only=True)
+    products = ProductSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = models.Cart
+        fields = [
+            'cart_id',
+            'created_at',
+            'books',
+            'products'
+        ]
