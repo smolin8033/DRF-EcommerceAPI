@@ -139,3 +139,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'http://www.website.com',
+    'http://localhost:3000',
+    'http://localhost:4200',
+    'https://web.postman.co'
+]
