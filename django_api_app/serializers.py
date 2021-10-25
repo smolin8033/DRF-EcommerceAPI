@@ -24,10 +24,11 @@ class ProductSerializer(serializers.ModelSerializer):
 class CartUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = 'username'
+        fields = ['username']
 
 
 class CartSerializer(serializers.ModelSerializer):
+    cart_id = CartUserSerializer(read_only=True)
     books = BookSerializer(many=True, read_only=True)
     products = ProductSerializer(many=True, read_only=True)
 
