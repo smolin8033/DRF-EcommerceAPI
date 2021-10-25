@@ -65,4 +65,4 @@ class Cart(models.Model):
         ordering = ('cart_id', '-created_at')
 
     def __str__(self):
-        return self.cart_id
+        return f'{self.cart_id}'
