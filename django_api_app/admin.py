@@ -17,3 +17,8 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.Cart)
+class CartAdmin(admin.ModelAdmin)
+    pass
