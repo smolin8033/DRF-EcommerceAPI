@@ -18,3 +18,8 @@ class BookViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
+
+
+class CartViewSet(viewsets.ModelViewSet):
+    queryset = models.Cart.objects.all()
+    serializer_class = serializers.CartSerializer
