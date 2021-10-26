@@ -17,10 +17,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create(
-            username = validated_data.get('username', None),
-            email = validated_data.get('email', None),
-            first_name = validated_data.get('first_name', None),
-            last_name = validated_data.get('last_name', None)
+            username=validated_data.get('username', None),
+            email=validated_data.get('email', None),
+            first_name=validated_data.get('first_name', None),
+            last_name=validated_data.get('last_name', None)
         )
         if User.objects.filter(email=user.email).exists():
             raise serializers.ValidationError('Not unique email')
