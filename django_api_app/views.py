@@ -1,7 +1,19 @@
 from . import models, serializers
+from django.contrib.auth.models import User
+from rest_framework import generics
+from rest_framework import permissions
 from rest_framework import viewsets
 
 # Create your views here.
+
+
+class CreateUserView(generics.CreateAPIView):
+    model = User
+    queryset = User.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = serializers.RegisterSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
