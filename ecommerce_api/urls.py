@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('django_api_app.urls')),
+    path('api-token-auth/', obtain_auth_token),
+    path('auth/registration/', views.CreateUserView.as_view())
 ]

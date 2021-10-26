@@ -14,5 +14,4 @@ router.register('carts', views.CartViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('<int:pk>/', include(router.urls)),
-    path('api-token-auth/', obtain_auth_token),
 ]
