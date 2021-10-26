@@ -16,7 +16,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only_fields = ['password']
 
     def create(self, validated_data):
-        user = User.objects.create(
+        user = User(
             username=validated_data.get('username', None),
             email=validated_data.get('email', None),
             first_name=validated_data.get('first_name', None),
