@@ -25,7 +25,7 @@ from django_api_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('django_api_app.urls')),
-    path('api/v2/', include('api_v2.urls')),
+    #path('api/v2/', include('api_v2.urls')),
     path('api-token-auth/', obtain_auth_token),
     path('auth/registration/', views.CreateUserView.as_view()),
     path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
