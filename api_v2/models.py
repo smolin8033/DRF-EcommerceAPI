@@ -20,6 +20,9 @@ class Cart(models.Model):
     )
     total = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def __str__(self):
+        return f'{self.user}'
+
 
 class Product(models.Model):
     category = models.ForeignKey(
@@ -35,6 +38,9 @@ class Product(models.Model):
     class Meta:
         ordering = ('-date_created',)
 
+    def __str__(self):
+        return f'{self.title}'
+
 
 class CartItem(models.Model):
     cart = models.ForeignKey(
@@ -44,3 +50,6 @@ class CartItem(models.Model):
         Product, related_name='cart_product', on_delete=models.CASCADE
     )
     quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f'{self.product}: {self.quantity} items'
