@@ -23,7 +23,8 @@ class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.CartItemSerializer
 
     def create(self, request, *args, **kwargs):
-        cart = get_object_or_404(models.Cart, user=User.objects.get(username='brandnewuser'))
+        user = request.user
+        cart = get_object_or_404(models.Cart, user=user)
         product = get_object_or_404(models.Product, pk=request.data['product'])
         quantity = int(request.data['quantity'])
         current_item = models.CartItem.objects.filter(cart=cart, product=product)
@@ -46,8 +47,9 @@ class CartItemViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
+        user = request.user
         cart_item = self.get_object()
-        cart = get_object_or_404(models.Cart, user=User.objects.get(username='brandnewuser'))
+        cart = get_object_or_404(models.Cart, user=user)
         product = get_object_or_404(models.Product, pk=request.data['product'])
         quantity = int(request.data['quantity'])
         if quantity > product.quantity:
@@ -71,8 +73,9 @@ class CartItemViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def destroy(self, request, *args, **kwargs):
+        user = request.user
         cart_item = self.get_object()
-        cart = get_object_or_404(models.Cart, user=User.objects.get(username='brandnewuser'))
+        cart = get_object_or_404(models.Cart, user=user)
         product = get_object_or_404(models.Product, pk=cart_item.product.id)
         product.quantity += cart_item.quantity
         cart.total = float(cart.total) - float(product.price) * float(
