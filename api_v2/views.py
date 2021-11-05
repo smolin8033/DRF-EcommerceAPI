@@ -1,12 +1,20 @@
 from . import models, serializers
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from rest_framework import permissions, status, viewsets
+from rest_framework import generics, permissions, status, viewsets
 from rest_framework.exceptions import NotAcceptable
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 # Create your views here.
+
+class CreateUserView(generics.CreateAPIView):
+    model = User
+    queryset = User.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = serializers.RegisterSerializer
 
 
 class ListProfitView(APIView):
