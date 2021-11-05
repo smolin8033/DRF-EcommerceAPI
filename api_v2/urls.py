@@ -11,4 +11,5 @@ router.register('carts', views.CartItemViewSet, basename='carts')
 urlpatterns = [
     path('', include(router.urls)),
     path('<int:pk>/', include(router.urls)),
+    path('profits/', views.ListProfitView.as_view(), name='list_profit')
 ]
