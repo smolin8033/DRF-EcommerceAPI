@@ -1,11 +1,33 @@
 from . import models, serializers
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from rest_framework import status, viewsets
+from rest_framework import permissions, status, viewsets
 from rest_framework.exceptions import NotAcceptable
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 # Create your views here.
+
+
+class ListProfitView(APIView):
+    permission_classes = [permissions.IsAdminUser]
+
+    def get(self, request):
+        income = 0
+        total_quantity = 0
+        carts = models.Cart.objects.all()
+        cart_items = models.CartItem.objects.all()
+        for cart in carts:
+            income += cart.total
+        for item in cart_items:
+            total_quantity += item.quantity
+        return Response(
+            {
+                "The total income is": income,
+                "The total quantity of items sold is": total_quantity,
+            },
+            status = status.HTTP_200_OK
+        )
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
